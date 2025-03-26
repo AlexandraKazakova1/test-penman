@@ -1,5 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
-  devtools: { enabled: true }
-})
+  target: "static",
+
+  app: {
+    baseURL: "/test-penman/",
+  },
+
+  compatibilityDate: "2025-03-26",
+});
