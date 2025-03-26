@@ -2,7 +2,7 @@ import { readFileSync } from "fs";
 import { join } from "path";
 
 export default defineEventHandler(() => {
-  const filePath = join(process.cwd(), "server", "data", "flight_data.json");
+  const filePath = join(process.cwd(), "public", "data", "flight_data.json");
 
   try {
     const fileContent = readFileSync(filePath, "utf-8");
