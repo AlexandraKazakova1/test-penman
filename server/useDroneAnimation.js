@@ -4,14 +4,15 @@ export default function useDroneAnimation() {
   const data = ref([]);
   const x = ref(0);
   const y = ref(0);
-  const scale = 0.3;
+  const scale = 0.09;
   const totalTime = 20;
   const currentTime = ref(0);
   const animationPlaying = ref(false);
   let interval = null;
+  const direction = ref(0);
 
   const droneStyle = computed(() => ({
-    transform: `translate(${x.value}px, ${y.value}px)`,
+    transform: `translate(${x.value}px, ${y.value}px) rotate(${direction.value}deg)`,
     transition: "transform 1s linear",
   }));
 
@@ -29,6 +30,7 @@ export default function useDroneAnimation() {
   function resetPosition() {
     x.value = 0;
     y.value = 0;
+    direction.value = 0;
   }
 
   function toggleAnimation() {
@@ -61,9 +63,9 @@ export default function useDroneAnimation() {
 
       if (point) {
         const speed = parseFloat(point.speed);
-        const direction = parseFloat(point.direction);
-        const distance = (speed / 60) * 5;
-        const radian = (direction * Math.PI) / 180;
+        direction.value = parseFloat(point.direction);
+        const distance = (speed / 60) * 10;
+        const radian = (direction.value * Math.PI) / 180;
 
         console.log(
           "Current Time:",
@@ -82,5 +84,13 @@ export default function useDroneAnimation() {
     }, intervalDuration);
   }
 
-  return { x, y, droneStyle, animationPlaying, toggleAnimation, fetchData };
+  return {
+    x,
+    y,
+    direction,
+    droneStyle,
+    animationPlaying,
+    toggleAnimation,
+    fetchData,
+  };
 }

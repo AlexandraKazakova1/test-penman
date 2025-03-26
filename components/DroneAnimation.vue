@@ -3,7 +3,7 @@
     <img class="background" src="../img/place.png" alt="background" />
     <img
       class="drone"
-      src="https://img.icons8.com/external-basicons-color-edtgraphics/50/external-Drone-drones-basicons-color-edtgraphics-19.png"
+      src="https://img.icons8.com/officel/80/airplane-mode-on.png"
       alt="drone"
       :style="droneStyle"
     />

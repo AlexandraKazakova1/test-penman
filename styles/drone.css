@@ -18,16 +18,17 @@
 
 .drone {
   position: absolute;
-  width: 64px;
-  height: 64px;
+  width: 50px;
+  height: 50px;
+  color: beige;
 }
 
 button {
   position: absolute;
-  top: calc(50% + 30%);
+  top: calc(50% + 40%);
   left: 50%;
   transform: translateX(-50%);
-  padding: 10px 75px;
+  padding: 10px 105px;
   background-color: #ffd344;
   color: rgb(0, 0, 0);
   border: none;
@@ -35,4 +36,8 @@ button {
   z-index: 10;
   border-radius: 5px;
   font-size: 16px;
+}
+
+button:hover {
+  background-color: #f1e1ad;
 }
