@@ -11,6 +11,9 @@ export default function useDroneAnimation() {
   const animationPlaying = ref(false);
   let interval = null;
 
+  const containerWidth = 1400;
+  const containerHeight = 1200;
+
   const droneStyle = computed(() => ({
     transform: `translate(${x.value}px, ${y.value}px)`,
     transition: "transform 1s linear",
@@ -71,8 +74,11 @@ export default function useDroneAnimation() {
           direction
         );
 
-        x.value += distance * Math.cos(radian) * scale;
-        y.value += distance * Math.sin(radian) * scale;
+        const newX = x.value + distance * Math.cos(radian) * scale;
+        const newY = y.value + distance * Math.sin(radian) * scale;
+
+        x.value = Math.min(Math.max(newX, 0), containerWidth - 10); // Обмеження по ширині
+        y.value = Math.min(Math.max(newY, 0), containerHeight - 10); // Обмеження по висоті
       }
 
       currentTime.value++;
