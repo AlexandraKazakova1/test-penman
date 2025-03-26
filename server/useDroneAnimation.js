@@ -1,4 +1,3 @@
-import { useFetch } from "nuxt/app";
 import { ref, computed } from "vue";
 
 export default function useDroneAnimation() {
@@ -18,8 +17,10 @@ export default function useDroneAnimation() {
 
   async function fetchData() {
     try {
-      const { data: flightData } = await useFetch("/api/flight_data");
-      data.value = flightData.value;
+      const response = await fetch("/data/flight_data.json");
+      const flightData = await response.json();
+      console.log("Fetched Data:", flightData);
+      data.value = flightData;
     } catch (error) {
       console.error("Error fetching data:", error);
     }
