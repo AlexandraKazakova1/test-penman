@@ -5,14 +5,11 @@ export default function useDroneAnimation() {
   const data = ref([]);
   const x = ref(0);
   const y = ref(0);
-  const scale = 2;
+  const scale = 0.3;
   const totalTime = 20;
   const currentTime = ref(0);
   const animationPlaying = ref(false);
   let interval = null;
-
-  const containerWidth = 1400;
-  const containerHeight = 1200;
 
   const droneStyle = computed(() => ({
     transform: `translate(${x.value}px, ${y.value}px)`,
@@ -44,6 +41,8 @@ export default function useDroneAnimation() {
   }
 
   function startAnimation() {
+    if (!data.value || data.value.length === 0) return;
+
     currentTime.value = 0;
     x.value = 0;
     y.value = 0;
@@ -62,7 +61,7 @@ export default function useDroneAnimation() {
       if (point) {
         const speed = parseFloat(point.speed);
         const direction = parseFloat(point.direction);
-        const distance = (speed / 60) * 5; // Масштабування
+        const distance = (speed / 60) * 5;
         const radian = (direction * Math.PI) / 180;
 
         console.log(
@@ -74,11 +73,8 @@ export default function useDroneAnimation() {
           direction
         );
 
-        const newX = x.value + distance * Math.cos(radian) * scale;
-        const newY = y.value + distance * Math.sin(radian) * scale;
-
-        x.value = Math.min(Math.max(newX, 0), containerWidth - 10); // Обмеження по ширині
-        y.value = Math.min(Math.max(newY, 0), containerHeight - 10); // Обмеження по висоті
+        x.value += distance * Math.cos(radian) * scale;
+        y.value += distance * Math.sin(radian) * scale;
       }
 
       currentTime.value++;
